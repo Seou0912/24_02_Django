@@ -22,7 +22,9 @@ from django.contrib import admin
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path(
-        "feeds/", include("feeds.urls")
-    ),  # from feeds import views  # feeds에서 views 불러옴
+    path("api/v1/feeds/", include("feeds.urls")),
+    # path("api/v1/users/", include("users.urls")),
+    # path("api/v2/feeds/", include("feeds.urls")),
+    # path("api/v3/feeds/", include("feeds.urls")),
+    # path("api/v2/users/", include("users.urls")),
 ]

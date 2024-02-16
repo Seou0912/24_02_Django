@@ -1,14 +1,10 @@
+# feeds/models.py
 from django.db import models
+from common.models import CommonModel
 
 
-# Create your models here.
-class Board(models.Model):
+class Feed(CommonModel):
     title = models.CharField(max_length=30)
-    content = models.TextField()
+    content = models.CharField(max_length=200)
 
-    date = models.DateTimeField(auto_now_add=True)
-    likes = models.TextField()
-
-    date = models.DateTimeField(auto_now_add=True)
-    likes = models.PositiveIntegerField(null=True)
-    reviews = models.PositiveIntegerField(null=True)
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE)

@@ -47,6 +47,7 @@ CUSTOM_USER_APPS = [
     "feeds.apps.FeedsConfig",
     "reviews.apps.ReviewsConfig",  # 추가
     "rest_framework",
+    "rest_framework_simplejwt",
 ]
 
 INSTALLED_APPS = DJANGO_SYSTEM_APPS + CUSTOM_USER_APPS
@@ -111,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -133,3 +135,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# config/settings.py
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "config.authentication.JWTAuthentication"  # 커스텀 JWT 인증 클래스 사용
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
